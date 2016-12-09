@@ -8,28 +8,28 @@
 <body>
 
   <div class="keys">
-    <div data-key="key" class="key">
+    <div data-key="68" class="key">
       <!--HTML Keyboard Input Element (<kbd>) user input-->
       <kbd>D</kbd>
       <span class="sound">clap</span>
     </div>
-    <div data-key="key" class="key">
+    <div data-key="69" class="key">
       <kbd>E</kbd>
       <span class="sound">kick</span>
     </div>
-    <div data-key="key" class="key">
+    <div data-key="86" class="key">
       <kbd>V</kbd>
       <span class="sound">boom</span>
     </div>
-    <div data-key="key" class="key">
+    <div data-key="69" class="key">
       <kbd>E</kbd>
       <span class="sound">kick</span>
     </div>
-    <div data-key="key" class="key">
+    <div data-key="83" class="key">
       <kbd>S</kbd>
       <span class="sound">openhat</span>
     </div>
-    <div data-key="key" class="key">
+    <div data-key="72" class="key">
       <kbd>H</kbd>
       <span class="sound">ride</span>
     </div>
@@ -43,6 +43,29 @@
 
   <script type="text/javascript">
     
+    function playSound(e){
+      //using javascript literals
+      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+      const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+
+      if(!audio) return;//invalid key pressed then return
+
+      key.classList.add('playing');
+      audio.currentTime = 0;//rewind to start
+      audio.play();
+    }    
+
+    function removeTransition(e){
+      if(e.propertyName !== 'transform') return;
+      this.classList.remove('playing');
+    }
+
+    //get all the elements with class 'key'
+    const keys = document.querySelectorAll('.key');
+    //for every node in the NodeList
+    //attach a listener to notify when the transition ends
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+    window.addEventListener('keydown', playSound);
 
   </script>
 

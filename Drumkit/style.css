@@ -16,7 +16,7 @@ body,html{
   display: flex /* turn div.keys into a flex container*/;
   flex: 1;/* equally sized columns*/
   min-height: 100vh;/* 100% of viewport's height*/
-  align-items: center; /* align items in the cross axis (i.e. y-axis) */
+  align-items: center; /* center flex items in the cross axis (i.e. y-axis) */
   justify-content: center; /* centering items in the main axis(i.e., x-axis)*/
 }
 
